@@ -9,4 +9,12 @@ public class FeedbackRequest {
     private String comment;
     private Date date;
     private int rate;
+
+    public UUID getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(UUID eventId) {
+        this.eventId = eventId;
+    }
 }

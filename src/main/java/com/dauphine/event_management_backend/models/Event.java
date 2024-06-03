@@ -14,4 +14,90 @@ public class Event {
     private Time eventTime;
     private String eventLocation;
     private String eventDescription;
+
+    public Event() {}
+
+    public Event(UUID id, String eventName, UUID createdBy, Date createdOn, UUID categoryId, Date eventDate, Time eventTime, String eventLocation, String eventDescription){
+        this.id = id;
+        this.eventName = eventName;
+        this.createdBy = createdBy;
+        this.createdOn = createdOn;
+        this.categoryId = categoryId;
+        this.eventDate = eventDate;
+        this.eventTime = eventTime;
+        this.eventLocation = eventLocation;
+        this.eventDescription = eventDescription;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public UUID getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(UUID createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public UUID getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(UUID categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Date getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(Date eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public Time getEventTime() {
+        return eventTime;
+    }
+
+    public void setEventTime(Time eventTime) {
+        this.eventTime = eventTime;
+    }
+
+    public String getEventLocation() {
+        return eventLocation;
+    }
+
+    public void setEventLocation(String eventLocation) {
+        this.eventLocation = eventLocation;
+    }
+
+    public String getEventDescription() {
+        return eventDescription;
+    }
+
+    public void setEventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
+    }
 }
