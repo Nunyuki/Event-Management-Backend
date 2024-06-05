@@ -9,7 +9,7 @@ public class Event {
     private String eventName;
     private UUID createdBy;
     private Date createdOn;
-    private UUID categoryId;
+    private Category category;
     private Date eventDate;
     private Time eventTime;
     private String eventLocation;
@@ -17,12 +17,12 @@ public class Event {
 
     public Event() {}
 
-    public Event(UUID id, String eventName, UUID createdBy, Date createdOn, UUID categoryId, Date eventDate, Time eventTime, String eventLocation, String eventDescription){
+    public Event(UUID id, String eventName, UUID createdBy, Date createdOn, Category category, Date eventDate, Time eventTime, String eventLocation, String eventDescription){
         this.id = id;
         this.eventName = eventName;
         this.createdBy = createdBy;
         this.createdOn = createdOn;
-        this.categoryId = categoryId;
+        this.category = category;
         this.eventDate = eventDate;
         this.eventTime = eventTime;
         this.eventLocation = eventLocation;
@@ -61,12 +61,12 @@ public class Event {
         this.createdOn = createdOn;
     }
 
-    public UUID getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(UUID categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Date getEventDate() {

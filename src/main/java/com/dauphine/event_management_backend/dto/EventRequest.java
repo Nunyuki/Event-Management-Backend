@@ -1,5 +1,7 @@
 package com.dauphine.event_management_backend.dto;
 
+import com.dauphine.event_management_backend.models.Category;
+
 import java.sql.Time;
 import java.util.Date;
 import java.util.UUID;
@@ -8,7 +10,7 @@ public class EventRequest {
     private String eventName;
     private UUID createdBy;
     private Date createdOn;
-    private UUID categoryId;
+    private Category category;
     private Date eventDate;
     private Time eventTime;
     private String eventLocation;
@@ -38,12 +40,12 @@ public class EventRequest {
         this.createdOn = createdOn;
     }
 
-    public UUID getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(UUID categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Date getEventDate() {
