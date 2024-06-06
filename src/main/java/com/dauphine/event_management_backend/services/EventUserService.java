@@ -5,7 +5,7 @@ import com.dauphine.event_management_backend.models.EventUser;
 import java.util.List;
 import java.util.UUID;
 
-public interface UserService {
+public interface EventUserService {
     EventUser retrieveUserById(UUID id);
     List<EventUser> retrieveAllUsersByEventId(UUID id);
     EventUser createUser(String username, String pseudo, String password, String email);

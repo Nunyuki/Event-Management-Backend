@@ -1,8 +1,6 @@
 package com.dauphine.event_management_backend.dto;
 
-import java.util.UUID;
-
-public class UserRequest {
+public class EventUserRequest {
     private String username;
     private String pseudo;
     private String password;
