@@ -6,17 +6,17 @@ import java.util.UUID;
 public class Feedback {
     private UUID id;
     private UUID eventId;
-    private UUID userId;
+    private UUID eventUserId;
     private String comment;
     private Date date;
     private int rate;
 
     public Feedback() {}
 
-    public Feedback(UUID id, UUID eventId, UUID userId, String comment, Date date, int rate) {
+    public Feedback(UUID id, UUID eventId, UUID eventUserId, String comment, Date date, int rate) {
         this.id = id;
         this.eventId = eventId;
-        this.userId = userId;
+        this.eventUserId = eventUserId;
         this.comment = comment;
         this.date = date;
         this.rate = rate;
@@ -38,12 +38,12 @@ public class Feedback {
         this.eventId = eventId;
     }
 
-    public UUID getUserId() {
-        return userId;
+    public UUID getEventUserId() {
+        return eventUserId;
     }
 
-    public void setUserId(UUID userId) {
-        this.userId = userId;
+    public void setEventUserId(UUID eventUserId) {
+        this.eventUserId = eventUserId;
     }
 
     public String getComment() {

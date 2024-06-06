@@ -6,15 +6,15 @@ import java.util.UUID;
 public class Registration {
     private UUID id;
     private UUID eventId;
-    private UUID userId;
+    private UUID eventUserId;
     private Date registrationDate;
 
     public Registration() {}
 
-    public Registration(UUID id, UUID eventId, UUID userId, Date registrationDate) {
+    public Registration(UUID id, UUID eventId, UUID eventUserId, Date registrationDate) {
         this.id = id;
         this.eventId = eventId;
-        this.userId = userId;
+        this.eventUserId = eventUserId;
         this.registrationDate = registrationDate;
     }
     public UUID getId() {
@@ -33,12 +33,12 @@ public class Registration {
         this.eventId = eventId;
     }
 
-    public UUID getUserId() {
-        return userId;
+    public UUID getEventUserId() {
+        return eventUserId;
     }
 
-    public void setUserId(UUID userId) {
-        this.userId = userId;
+    public void setEventUserId(UUID eventUserId) {
+        this.eventUserId = eventUserId;
     }
 
     public Date getRegistrationDate() {

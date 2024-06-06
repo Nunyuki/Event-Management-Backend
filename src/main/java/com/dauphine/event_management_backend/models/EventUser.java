@@ -2,16 +2,17 @@ package com.dauphine.event_management_backend.models;
 
 import java.util.UUID;
 
-public class User {
+
+public class EventUser {
     private UUID id;
     private String username;
     private String pseudo;
     private String password;
     private String email;
 
-    public User() {}
+    public EventUser() {}
 
-    public User(UUID id, String username, String pseudo, String password, String email) {
+    public EventUser(UUID id, String username, String pseudo, String password, String email) {
         this.id = id;
         this.username = username;
         this.pseudo = pseudo;
