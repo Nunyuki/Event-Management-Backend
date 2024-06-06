@@ -31,4 +31,6 @@ public class EventUserServiceImpl implements EventUserService {
     public void deleteById(UUID id) {
 
     }
+
+
 }
