@@ -1,18 +1,41 @@
 package com.dauphine.event_management_backend.models;
 
+import jakarta.persistence.*;
+
 import java.sql.Time;
 import java.util.Date;
 import java.util.UUID;
 
+@Entity
+@Table(name = "event")
 public class Event {
+    @Id
+    @Column(name = "id", nullable = false)
     private UUID id;
+
+    @Column(name = "event_name", nullable = false)
     private String eventName;
+
+    @Column(name = "created_by")
     private UUID createdBy;
+
+    @Column(name = "created_on")
     private Date createdOn;
+
+    @ManyToOne
+    @JoinColumn(name="category_id", nullable = false)
     private Category category;
+
+    @Column(name = "event_date", nullable = false)
     private Date eventDate;
+
+    @Column(name = "event_time", nullable = false)
     private Time eventTime;
+
+    @Column(name = "event_location", nullable = false)
     private String eventLocation;
+
+    @Column(name = "event_description", nullable = false)
     private String eventDescription;
 
     public Event() {}

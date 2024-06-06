@@ -1,13 +1,29 @@
 package com.dauphine.event_management_backend.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.util.UUID;
 
-
+@Entity
+@Table(name = "eventuser")
 public class EventUser {
+    @Id
+    @Column(name = "id", nullable = false)
     private UUID id;
+
+    @Column(name = "username", nullable = false)
     private String username;
+
+    @Column(name = "pseudo", nullable = false)
     private String pseudo;
+
+    @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "email", nullable = false)
     private String email;
 
     public EventUser() {}

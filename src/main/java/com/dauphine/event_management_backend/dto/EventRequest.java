@@ -10,7 +10,7 @@ public class EventRequest {
     private String eventName;
     private UUID createdBy;
     private Date createdOn;
-    private Category category;
+    private UUID categoryId;
     private Date eventDate;
     private Time eventTime;
     private String eventLocation;
@@ -40,12 +40,12 @@ public class EventRequest {
         this.createdOn = createdOn;
     }
 
-    public Category getCategory() {
-        return category;
+    public UUID getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(UUID categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Date getEventDate() {
