@@ -31,7 +31,10 @@ public class EventUserServiceImpl implements EventUserService {
     @Override
     public EventUser createUser(EventUserRequest eventUserRequest) {
 
-        if(eventUserRepository.findByUsername(eventUserRequest.getPseudo()) != null){
+        if(eventUserRepository.findByPseudo(eventUserRequest.getPseudo()) != null){
+            return null;
+        }
+        if(!SecurityConfig.checkEMail(eventUserRequest.getEmail())){
             return null;
         }
 

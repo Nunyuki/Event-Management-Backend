@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 
 public interface EventUserRepository extends JpaRepository<EventUser, UUID> {
-    EventUser findByUsername(String username);
+    EventUser findByPseudo(String pseudo);
 }
