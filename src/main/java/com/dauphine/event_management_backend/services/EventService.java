@@ -1,5 +1,6 @@
 package com.dauphine.event_management_backend.services;
 
+import com.dauphine.event_management_backend.dto.EventRequest;
 import com.dauphine.event_management_backend.models.Category;
 import com.dauphine.event_management_backend.models.Event;
 
@@ -11,7 +12,7 @@ import java.util.UUID;
 public interface EventService {
     List<Event> retrieveAllEvents();
     Event retrieveEventById(UUID id);
-    Event createEvent(String EventName, UUID createdBy, Category category, Date eventDate, Time eventTime, String eventLocation, String eventDescription);
-    Event updateEvent(UUID id, String eventName, Date eventDate, Time eventTime, String eventLocation, String eventDescription);
+    Event createEvent(EventRequest eventRequest);
+    Event updateEvent(UUID id, EventRequest eventRequest);
     void deleteById(UUID id);
 }

@@ -1,5 +1,6 @@
 package com.dauphine.event_management_backend.services.impl;
 
+import com.dauphine.event_management_backend.dto.FeedbackRequest;
 import com.dauphine.event_management_backend.models.Feedback;
 import com.dauphine.event_management_backend.services.FeedbackService;
 
@@ -23,12 +24,12 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public Feedback createFeedback(UUID eventId, UUID userId, String comment, int rate) {
+    public Feedback createFeedback(FeedbackRequest feedbackRequest) {
         return null;
     }
 
     @Override
-    public Feedback updateFeedback(UUID id, String comment, int rate) {
+    public Feedback updateFeedback(UUID id, FeedbackRequest feedbackRequest) {
         return null;
     }
 

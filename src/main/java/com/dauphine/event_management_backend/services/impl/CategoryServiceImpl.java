@@ -1,5 +1,6 @@
 package com.dauphine.event_management_backend.services.impl;
 
+import com.dauphine.event_management_backend.dto.CategoryRequest;
 import com.dauphine.event_management_backend.models.Category;
 import com.dauphine.event_management_backend.repositories.CategoryRepository;
 import com.dauphine.event_management_backend.services.CategoryService;
@@ -25,21 +26,22 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category createCategory(String categoryName) {
-        if(categoryRepository.findCategoryName(categoryName)!=null){
+    public Category createCategory(CategoryRequest categoryRequest) {
+        if(categoryRepository.findCategoryName(categoryRequest.getCategoryName())!=null){
             return null;
         }
-        Category category = new Category(categoryName);
+        Category category = new Category(categoryRequest.getCategoryName());
         return categoryRepository.save(category);
     }
 
     @Override
-    public Category updateCategory(UUID id, String categoryName) {
-        if (categoryRepository.findCategoryName(categoryName)==null){
+    public Category updateCategory(UUID id, CategoryRequest categoryRequest) {
+        Category category = retrieveCategoryById(id);
+
+        if (category == null){
             return null;
         }
-        Category category = retrieveCategoryById(id);
-        category.setCategoryName(categoryName);
+        category.setCategoryName(categoryRequest.getCategoryName());
         return categoryRepository.save(category);
     }
 

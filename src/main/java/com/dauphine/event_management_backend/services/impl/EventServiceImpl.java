@@ -1,5 +1,6 @@
 package com.dauphine.event_management_backend.services.impl;
 
+import com.dauphine.event_management_backend.dto.EventRequest;
 import com.dauphine.event_management_backend.models.Category;
 import com.dauphine.event_management_backend.models.Event;
 import com.dauphine.event_management_backend.services.EventService;
@@ -21,12 +22,12 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event createEvent(String EventName, UUID createdBy, Category category, Date eventDate, Time eventTime, String eventLocation, String eventDescription) {
+    public Event createEvent(EventRequest eventRequest) {
         return null;
     }
 
     @Override
-    public Event updateEvent(UUID id, String eventName, Date eventDate, Time eventTime, String eventLocation, String eventDescription) {
+    public Event updateEvent(UUID id, EventRequest eventRequest) {
         return null;
     }
 

@@ -1,5 +1,6 @@
 package com.dauphine.event_management_backend.services.impl;
 
+import com.dauphine.event_management_backend.dto.EventUserRequest;
 import com.dauphine.event_management_backend.models.EventUser;
 import com.dauphine.event_management_backend.services.EventUserService;
 
@@ -18,12 +19,12 @@ public class EventUserServiceImpl implements EventUserService {
     }
 
     @Override
-    public EventUser createUser(String username, String pseudo, String password, String email) {
+    public EventUser createUser(EventUserRequest eventUserRequest) {
         return null;
     }
 
     @Override
-    public EventUser updateUser(UUID id, String pseudo, String password, String email) {
+    public EventUser updateUser(UUID id, EventUserRequest eventUserRequest) {
         return null;
     }
 

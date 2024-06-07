@@ -1,5 +1,6 @@
 package com.dauphine.event_management_backend.services.impl;
 
+import com.dauphine.event_management_backend.dto.RegistrationRequest;
 import com.dauphine.event_management_backend.models.Registration;
 import com.dauphine.event_management_backend.services.RegistrationService;
 
@@ -28,7 +29,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     @Override
-    public Registration createRegistration(UUID eventId, UUID userId) {
+    public Registration createRegistration(RegistrationRequest registrationRequest) {
         return null;
     }
 

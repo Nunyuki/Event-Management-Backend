@@ -1,5 +1,6 @@
 package com.dauphine.event_management_backend.services;
 
+import com.dauphine.event_management_backend.dto.RegistrationRequest;
 import com.dauphine.event_management_backend.models.Registration;
 
 import java.util.Date;
@@ -11,6 +12,6 @@ public interface RegistrationService {
     Registration retrieveFeedbackById(UUID id);
     List<Registration> retrieveAllRegistrationByEventId(UUID id);
     List<Registration> retrieveAllRegistrationByUserId(UUID id);
-    Registration createRegistration(UUID eventId, UUID userId);
+    Registration createRegistration(RegistrationRequest registrationRequest);
     void deleteById(UUID id);
 }
