@@ -1,5 +1,5 @@
 package com.dauphine.event_management_backend.controllers;
-import com.dauphine.event_management_backend.dto.AuthenticateRequest;
+import com.dauphine.event_management_backend.dto.AuthenticationRequest;
 import com.dauphine.event_management_backend.dto.EventUserRequest;
 import com.dauphine.event_management_backend.models.EventUser;
 import com.dauphine.event_management_backend.services.EventUserService;
@@ -30,8 +30,8 @@ public class EventUserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<EventUser> login(@RequestBody AuthenticateRequest authenticateRequest) {
-        EventUser user = eventUserService.authenticateUser(authenticateRequest.getPseudo(), authenticateRequest.getPassword());
+    public ResponseEntity<EventUser> login(@RequestBody AuthenticationRequest authenticationRequest) {
+        EventUser user = eventUserService.authenticateUser(authenticationRequest.getPseudo(), authenticationRequest.getPassword());
         return ResponseEntity.ok(user);
     }
 }

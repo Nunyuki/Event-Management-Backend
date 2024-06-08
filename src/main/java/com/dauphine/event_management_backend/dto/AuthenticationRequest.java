@@ -1,6 +1,6 @@
 package com.dauphine.event_management_backend.dto;
 
-public class AuthenticateRequest {
+public class AuthenticationRequest {
     private String pseudo;
     private String password;
 
