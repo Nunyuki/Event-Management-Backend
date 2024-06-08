@@ -12,5 +12,5 @@ public interface EventUserService {
     EventUser createUser(EventUserRequest eventUserRequest);
     EventUser updateUser(UUID id, EventUserRequest eventUserRequest);
     void deleteUserById(UUID id);
-
+    EventUser authenticateUser(String pseudo, String password);
 }

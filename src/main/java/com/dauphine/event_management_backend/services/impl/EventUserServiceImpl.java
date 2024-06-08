@@ -53,5 +53,13 @@ public class EventUserServiceImpl implements EventUserService {
 
     }
 
+    @Override
+    public EventUser authenticateUser(String pseudo, String password) {
+        EventUser eventUser = eventUserRepository.findByPseudo(pseudo);
 
+        if(SecurityConfig.checkPassword(password, eventUser.getPassword())){
+            return eventUser;
+        }
+        return null;
+    }
 }
