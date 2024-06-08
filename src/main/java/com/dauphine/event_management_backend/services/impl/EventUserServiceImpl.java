@@ -49,7 +49,7 @@ public class EventUserServiceImpl implements EventUserService {
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteUserById(UUID id) {
 
     }
 

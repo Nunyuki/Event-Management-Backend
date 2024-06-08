@@ -32,7 +32,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteEventById(UUID id) {
 
     }
 }

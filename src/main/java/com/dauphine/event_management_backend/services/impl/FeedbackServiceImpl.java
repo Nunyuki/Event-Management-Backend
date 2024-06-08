@@ -34,7 +34,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteFeedbackById(UUID id) {
 
     }
 }

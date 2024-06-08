@@ -11,5 +11,6 @@ public interface EventUserService {
     List<EventUser> retrieveAllUsersByEventId(UUID id);
     EventUser createUser(EventUserRequest eventUserRequest);
     EventUser updateUser(UUID id, EventUserRequest eventUserRequest);
-    void deleteById(UUID id);
+    void deleteUserById(UUID id);
+
 }

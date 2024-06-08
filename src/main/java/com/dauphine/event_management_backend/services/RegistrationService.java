@@ -13,5 +13,5 @@ public interface RegistrationService {
     List<Registration> retrieveAllRegistrationByEventId(UUID id);
     List<Registration> retrieveAllRegistrationByUserId(UUID id);
     Registration createRegistration(RegistrationRequest registrationRequest);
-    void deleteById(UUID id);
+    void deleteRegistrationById(UUID id);
 }

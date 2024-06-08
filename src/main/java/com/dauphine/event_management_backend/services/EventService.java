@@ -14,5 +14,5 @@ public interface EventService {
     Event retrieveEventById(UUID id);
     Event createEvent(EventRequest eventRequest);
     Event updateEvent(UUID id, EventRequest eventRequest);
-    void deleteById(UUID id);
+    void deleteEventById(UUID id);
 }

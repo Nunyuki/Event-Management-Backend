@@ -34,7 +34,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteRegistrationById(UUID id) {
 
     }
 }

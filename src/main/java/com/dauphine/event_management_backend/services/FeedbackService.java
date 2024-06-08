@@ -12,5 +12,5 @@ public interface FeedbackService {
     List<Feedback> retrieveAllFeedbacksByEventId(UUID id);
     Feedback createFeedback(FeedbackRequest feedbackRequest);
     Feedback updateFeedback(UUID id, FeedbackRequest feedbackRequest);
-    void deleteById(UUID id);
+    void deleteFeedbackById(UUID id);
 }
