@@ -21,11 +21,11 @@ public class EventUserController {
         EventUser registeredUSer = eventUserService.createUser(user);
 
         if (registeredUSer == null) {
-            System.out.println("Erreur durant l'inscription");
+            System.out.println("Registration error");
             return null;
         }
 
-        System.out.println("Inscription réussie");
+        System.out.println("Successful registration");
         return registeredUSer;
     }
 
