@@ -2,7 +2,7 @@ package com.dauphine.event_management_backend.models;
 
 import jakarta.persistence.*;
 
-import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -20,17 +20,13 @@ public class Event {
     private UUID createdBy;
 
     @Column(name = "created_on")
-    private Date createdOn;
+    private LocalDateTime createdOn;
 
-    @ManyToOne
-    @JoinColumn(name="category_id", nullable = false)
-    private Category category;
+    @JoinColumn(name="category_name", nullable = false)
+    private String categoryName;
 
     @Column(name = "event_date", nullable = false)
-    private Date eventDate;
-
-    @Column(name = "event_time", nullable = false)
-    private Time eventTime;
+    private LocalDateTime eventDate;
 
     @Column(name = "event_location", nullable = false)
     private String eventLocation;
@@ -40,14 +36,13 @@ public class Event {
 
     public Event() {}
 
-    public Event(UUID id, String eventName, UUID createdBy, Date createdOn, Category category, Date eventDate, Time eventTime, String eventLocation, String eventDescription){
+    public Event(UUID id, String eventName, UUID createdBy, LocalDateTime createdOn, String categoryName, LocalDateTime eventDate, String eventLocation, String eventDescription){
         this.id = id;
         this.eventName = eventName;
         this.createdBy = createdBy;
         this.createdOn = createdOn;
-        this.category = category;
+        this.categoryName = categoryName;
         this.eventDate = eventDate;
-        this.eventTime = eventTime;
         this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
     }
@@ -76,36 +71,28 @@ public class Event {
         this.createdBy = createdBy;
     }
 
-    public Date getCreatedOn() {
+    public LocalDateTime getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(Date createdOn) {
+    public void setCreatedOn(LocalDateTime createdOn) {
         this.createdOn = createdOn;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    public Date getEventDate() {
+    public LocalDateTime getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(Date eventDate) {
+    public void setEventDate(LocalDateTime eventDate) {
         this.eventDate = eventDate;
-    }
-
-    public Time getEventTime() {
-        return eventTime;
-    }
-
-    public void setEventTime(Time eventTime) {
-        this.eventTime = eventTime;
     }
 
     public String getEventLocation() {

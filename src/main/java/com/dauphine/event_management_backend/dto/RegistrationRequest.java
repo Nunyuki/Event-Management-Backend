@@ -6,7 +6,6 @@ import java.util.UUID;
 public class RegistrationRequest {
     private UUID eventId;
     private UUID userId;
-    private Date registrationDate;
 
     public UUID getEventId() {
         return eventId;
@@ -22,13 +21,5 @@ public class RegistrationRequest {
 
     public void setUserId(UUID userId) {
         this.userId = userId;
-    }
-
-    public Date getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
     }
 }

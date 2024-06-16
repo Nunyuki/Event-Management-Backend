@@ -4,6 +4,6 @@ import java.util.UUID;
 
 public class CategoryNotFoundByIdException extends  Exception {
     public CategoryNotFoundByIdException(UUID id) {
-        super("On ne trouve pas de catégorie avec l'id: " + id + "!!!");
+        super("No category with the id : " + id + "have been found!!!");
     }
 }

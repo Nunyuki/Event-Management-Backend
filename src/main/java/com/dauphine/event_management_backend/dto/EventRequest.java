@@ -2,17 +2,18 @@ package com.dauphine.event_management_backend.dto;
 
 import com.dauphine.event_management_backend.models.Category;
 
+import java.security.SecureRandom;
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
 public class EventRequest {
     private String eventName;
     private UUID createdBy;
-    private Date createdOn;
-    private UUID categoryId;
-    private Date eventDate;
-    private Time eventTime;
+    private LocalDateTime createdOn;
+    private String categoryName;
+    private LocalDateTime eventDate;
     private String eventLocation;
     private String eventDescription;
 
@@ -32,36 +33,28 @@ public class EventRequest {
         this.createdBy = createdBy;
     }
 
-    public Date getCreatedOn() {
+    public LocalDateTime getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(Date createdOn) {
+    public void setCreatedOn(LocalDateTime createdOn) {
         this.createdOn = createdOn;
     }
 
-    public UUID getCategoryId() {
-        return categoryId;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategoryId(UUID categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryId(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    public Date getEventDate() {
+    public LocalDateTime getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(Date eventDate) {
+    public void setEventDate(LocalDateTime eventDate) {
         this.eventDate = eventDate;
-    }
-
-    public Time getEventTime() {
-        return eventTime;
-    }
-
-    public void setEventTime(Time eventTime) {
-        this.eventTime = eventTime;
     }
 
     public String getEventLocation() {

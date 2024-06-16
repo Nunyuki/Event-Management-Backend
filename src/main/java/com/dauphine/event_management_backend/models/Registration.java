@@ -20,16 +20,12 @@ public class Registration {
     @JoinColumn(name = "event_user_id", nullable = false)
     private EventUser eventUser;
 
-    @Column(name = "registration_date", nullable = false)
-    private Date registrationDate;
-
     public Registration() {}
 
-    public Registration(UUID id, Event event, EventUser eventUser, Date registrationDate) {
+    public Registration(UUID id, Event event, EventUser eventUser) {
         this.id = id;
         this.event = event;
         this.eventUser = eventUser;
-        this.registrationDate = registrationDate;
     }
     public UUID getId() {
         return id;
@@ -53,13 +49,5 @@ public class Registration {
 
     public void setEventUser(EventUser eventUser) {
         this.eventUser = eventUser;
-    }
-
-    public Date getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
     }
 }
