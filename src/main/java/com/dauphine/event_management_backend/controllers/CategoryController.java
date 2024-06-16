@@ -32,8 +32,6 @@ public class CategoryController {
             @Parameter(description = "Option to filter categories by sub chain (name)")
             @RequestParam(required = false) String categoryName) {
 
-        System.out.println("Received categoryName: " + categoryName);
-
         List<Category> categories = categoryName == null || categoryName.isBlank()
                 ? categoryService.retrieveAllCategories()
                 : categoryService.findAllLikeCategoryName(categoryName);
@@ -91,7 +89,6 @@ public class CategoryController {
     public ResponseEntity<?> deleteCategory(
             @Parameter(description = "Id of the category to delete")
             @PathVariable UUID id) throws CategoryNotFoundByIdException {
-        categoryService.retrieveCategoryById(id);
         categoryService.deleteCategoryById(id);
         return ResponseEntity.ok().build();
     }
