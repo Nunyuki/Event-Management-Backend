@@ -18,14 +18,10 @@ import java.util.UUID;
 
 @Service
 public class FeedbackServiceImpl implements FeedbackService {
-    FeedbackRepository feedbackRepository;
-    EventService eventService;
-    EventUserService eventUserService;
+    private final FeedbackRepository feedbackRepository;
 
-    public FeedbackServiceImpl(FeedbackRepository feedbackRepository, EventService eventService,EventUserService eventUserService) {
+    public FeedbackServiceImpl(FeedbackRepository feedbackRepository) {
         this.feedbackRepository = feedbackRepository;
-        this.eventService = eventService;
-        this.eventUserService = eventUserService;
     }
 
     @Override

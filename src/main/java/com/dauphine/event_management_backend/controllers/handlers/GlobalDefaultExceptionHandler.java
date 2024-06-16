@@ -4,6 +4,8 @@ import com.dauphine.event_management_backend.exceptions.categories.*;
 import com.dauphine.event_management_backend.exceptions.events.*;
 import com.dauphine.event_management_backend.exceptions.eventusers.*;
 import com.dauphine.event_management_backend.exceptions.feedback.*;
+import com.dauphine.event_management_backend.exceptions.registrations.RegistrationAlreadyExistsException;
+import com.dauphine.event_management_backend.exceptions.registrations.RegistrationNotFoundByIdException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,8 @@ public class GlobalDefaultExceptionHandler {
             CategoryNotFoundByIdException.class,
             UserNotFoundByIdException.class,
             EventAlreadyExistsException.class,
-            FeedbackNotFoundByIdException.class
+            FeedbackNotFoundByIdException.class,
+            RegistrationNotFoundByIdException.class
     })
 
     public ResponseEntity<String> handlerNotFoundException(Exception e){
@@ -35,7 +38,8 @@ public class GlobalDefaultExceptionHandler {
             EventNotFoundByIdException.class,
             EmptyDescriptionException.class,
             EmptyFeedbackCommentException.class,
-            FeedbackAlreadyExistsException.class
+            FeedbackAlreadyExistsException.class,
+            RegistrationAlreadyExistsException.class
     })
 
     public ResponseEntity<String> handleBadRequestException(Exception e){

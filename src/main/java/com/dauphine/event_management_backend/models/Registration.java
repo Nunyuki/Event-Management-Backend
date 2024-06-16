@@ -12,20 +12,18 @@ public class Registration {
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
-    private Event event;
+    private UUID eventId;
 
-    @ManyToOne
     @JoinColumn(name = "event_user_id", nullable = false)
-    private EventUser eventUser;
+    private UUID eventUserId;
 
     public Registration() {}
 
-    public Registration(UUID id, Event event, EventUser eventUser) {
-        this.id = id;
-        this.event = event;
-        this.eventUser = eventUser;
+    public Registration(UUID eventId, UUID eventUserId) {
+        this.id = UUID.randomUUID();
+        this.eventId = eventId;
+        this.eventUserId = eventUserId;
     }
     public UUID getId() {
         return id;
@@ -35,19 +33,19 @@ public class Registration {
         this.id = id;
     }
 
-    public Event getEvent() {
-        return event;
+    public UUID getEventId() {
+        return eventId;
     }
 
-        public void setEvent(Event event) {
-        this.event = event;
+        public void setEventId(UUID eventId) {
+        this.eventId = eventId;
     }
 
-    public EventUser getEventUser() {
-        return eventUser;
+    public UUID getEventUserId() {
+        return eventUserId;
     }
 
-    public void setEventUser(EventUser eventUser) {
-        this.eventUser = eventUser;
+    public void setEventUser(UUID eventUserId) {
+        this.eventUserId = eventUserId;
     }
 }
