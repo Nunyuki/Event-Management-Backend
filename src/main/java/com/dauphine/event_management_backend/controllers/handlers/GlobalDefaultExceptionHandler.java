@@ -1,10 +1,9 @@
 package com.dauphine.event_management_backend.controllers.handlers;
 
 import com.dauphine.event_management_backend.exceptions.categories.*;
-import com.dauphine.event_management_backend.exceptions.events.EmptyDescriptionException;
-import com.dauphine.event_management_backend.exceptions.events.EventAlreadyExistsException;
-import com.dauphine.event_management_backend.exceptions.events.EventNotFoundByIdException;
+import com.dauphine.event_management_backend.exceptions.events.*;
 import com.dauphine.event_management_backend.exceptions.eventusers.*;
+import com.dauphine.event_management_backend.exceptions.feedback.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,8 @@ public class GlobalDefaultExceptionHandler {
     @ExceptionHandler({
             CategoryNotFoundByIdException.class,
             UserNotFoundByIdException.class,
-            EventAlreadyExistsException.class
+            EventAlreadyExistsException.class,
+            FeedbackNotFoundByIdException.class
     })
 
     public ResponseEntity<String> handlerNotFoundException(Exception e){
@@ -34,6 +34,8 @@ public class GlobalDefaultExceptionHandler {
             InvalidEmailException.class,
             EventNotFoundByIdException.class,
             EmptyDescriptionException.class,
+            EmptyFeedbackCommentException.class,
+            FeedbackAlreadyExistsException.class
     })
 
     public ResponseEntity<String> handleBadRequestException(Exception e){

@@ -46,7 +46,7 @@ public class EventUserServiceImpl implements EventUserService {
 
     @Override
     public EventUser updateUser(UUID id, EventUserRequest eventUserRequest) throws UserNotFoundByIdException, EmptyDataException {
-        EventUser eventUser = eventUserRepository.findById(id).orElseThrow(() -> new UserNotFoundByIdException(id));
+        EventUser eventUser = retrieveUserById(id);
         if(eventUserRequest.getPseudo().isEmpty() || eventUserRequest.getPassword().isEmpty() || eventUserRequest.getEmail().isEmpty() || eventUserRequest.getUsername().isEmpty()){
             throw new EmptyDataException();
         }

@@ -2,6 +2,7 @@ package com.dauphine.event_management_backend.models;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -12,29 +13,27 @@ public class Feedback {
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
-    private Event event;
+    private UUID eventId;
 
-    @ManyToOne
     @JoinColumn(name = "event_user_id", nullable = false)
-    private EventUser eventUser;
+    private UUID eventUserId;
 
     @Column(name = "comment", nullable = false)
     private String comment;
 
     @Column(name = "date", nullable = false)
-    private Date date;
+    private LocalDateTime date;
 
     @Column(name = "rate", nullable = false)
     private int rate;
 
     public Feedback() {}
 
-    public Feedback(UUID id, Event event, EventUser eventUser, String comment, Date date, int rate) {
-        this.id = id;
-        this.event = event;
-        this.eventUser = eventUser;
+    public Feedback(UUID eventId, UUID eventUserId, String comment, LocalDateTime date, int rate) {
+        this.id = UUID.randomUUID();
+        this.eventId = eventId;
+        this.eventUserId = eventUserId;
         this.comment = comment;
         this.date = date;
         this.rate = rate;
@@ -48,20 +47,20 @@ public class Feedback {
         this.id = id;
     }
 
-    public Event getEvent() {
-        return event;
+    public UUID getEventId() {
+        return eventId;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setEventId(UUID eventId) {
+        this.eventId = eventId;
     }
 
-    public EventUser getEventUser() {
-        return eventUser;
+    public UUID getEventUserId() {
+        return eventUserId;
     }
 
-    public void setEventUser(EventUser eventUser) {
-        this.eventUser = eventUser;
+    public void setEventUserId(UUID eventUserId) {
+        this.eventUserId = eventUserId;
     }
 
     public String getComment() {
@@ -72,11 +71,11 @@ public class Feedback {
         this.comment = comment;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
