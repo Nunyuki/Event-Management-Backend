@@ -16,6 +16,17 @@ public class EventRequest {
     private LocalDateTime eventDate;
     private String eventLocation;
     private String eventDescription;
+    private int maxCapacity;
+    private String image;
+
+
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public void setMaxCapacity(int maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
 
     public String getEventName() {
         return eventName;
@@ -45,7 +56,7 @@ public class EventRequest {
         return categoryName;
     }
 
-    public void setCategoryId(String categoryName) {
+    public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
 
@@ -71,5 +82,13 @@ public class EventRequest {
 
     public void setEventDescription(String eventDescription) {
         this.eventDescription = eventDescription;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

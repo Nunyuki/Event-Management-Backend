@@ -1,6 +1,9 @@
 package com.dauphine.event_management_backend.controllers.handlers;
 
 import com.dauphine.event_management_backend.exceptions.categories.*;
+import com.dauphine.event_management_backend.exceptions.events.EmptyDescriptionException;
+import com.dauphine.event_management_backend.exceptions.events.EventAlreadyExistsException;
+import com.dauphine.event_management_backend.exceptions.events.EventNotFoundByIdException;
 import com.dauphine.event_management_backend.exceptions.eventusers.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +17,8 @@ public class GlobalDefaultExceptionHandler {
 
     @ExceptionHandler({
             CategoryNotFoundByIdException.class,
-            UserNotFoundByIdException.class
+            UserNotFoundByIdException.class,
+            EventAlreadyExistsException.class
     })
 
     public ResponseEntity<String> handlerNotFoundException(Exception e){
@@ -27,7 +31,9 @@ public class GlobalDefaultExceptionHandler {
             AuthenticationException.class,
             EmptyDataException.class,
             PseudoAlreadyExistsException.class,
-            InvalidEmailException.class
+            InvalidEmailException.class,
+            EventNotFoundByIdException.class,
+            EmptyDescriptionException.class,
     })
 
     public ResponseEntity<String> handleBadRequestException(Exception e){

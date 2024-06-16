@@ -51,12 +51,12 @@ public class CategoryController {
         return ResponseEntity.ok(category);
     }
 
-    @PostMapping("")
+    @PostMapping()
     @Operation(
             summary = "Create a new category",
             description = "Create a new category by setting an unused name"
     )
-    public ResponseEntity<Category> createCategory(
+    public ResponseEntity<?> createCategory(
             @Parameter(description = "Request which contains the name of the new category")
             @RequestBody CategoryRequest categoryRequest) throws CategoryNameAlreadyExistsException {
 

@@ -34,10 +34,16 @@ public class Event {
     @Column(name = "event_description", nullable = false)
     private String eventDescription;
 
+    @Column(name = "max_capacity", nullable = false)
+    private int maxCapacity;
+
+    @Column(name = "image", nullable = true)
+    private String image;
+
     public Event() {}
 
-    public Event(UUID id, String eventName, UUID createdBy, LocalDateTime createdOn, String categoryName, LocalDateTime eventDate, String eventLocation, String eventDescription){
-        this.id = id;
+    public Event(String eventName, UUID createdBy, LocalDateTime createdOn, String categoryName, LocalDateTime eventDate, String eventLocation, String eventDescription, int maxCapacity, String image){
+        this.id = UUID.randomUUID();
         this.eventName = eventName;
         this.createdBy = createdBy;
         this.createdOn = createdOn;
@@ -45,6 +51,16 @@ public class Event {
         this.eventDate = eventDate;
         this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
+        this.maxCapacity = maxCapacity;
+        this.image = image;
+    }
+
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public void setMaxCapacity(int maxCapacity) {
+        this.maxCapacity = maxCapacity;
     }
 
     public UUID getId() {
@@ -109,5 +125,15 @@ public class Event {
 
     public void setEventDescription(String eventDescription) {
         this.eventDescription = eventDescription;
+    }
+
+    public void setAll(String eventName, String categoryName, LocalDateTime eventDate, String eventLocation, String eventDescription, int maxCapacity, String image){
+        this.eventName = eventName;
+        this.categoryName = categoryName;
+        this.eventDate = eventDate;
+        this.eventLocation = eventLocation;
+        this.eventDescription = eventDescription;
+        this.maxCapacity = maxCapacity;
+        this.image = image;
     }
 }
