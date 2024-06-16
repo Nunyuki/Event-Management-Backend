@@ -28,8 +28,8 @@ public class EventUser {
 
     public EventUser() {}
 
-    public EventUser(UUID id, String username, String pseudo, String password, String email) {
-        this.id = id;
+    public EventUser(String username, String pseudo, String password, String email) {
+        this.id = UUID.randomUUID();
         this.username = username;
         this.pseudo = pseudo;
         this.password = password;

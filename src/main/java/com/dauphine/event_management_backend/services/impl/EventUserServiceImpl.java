@@ -40,7 +40,7 @@ public class EventUserServiceImpl implements EventUserService {
         }
 
         String encodedPassword = SecurityConfig.hashPassword((eventUserRequest.getPassword()));
-        EventUser eventUser = new EventUser(UUID.randomUUID(), eventUserRequest.getUsername(), eventUserRequest.getPseudo(), encodedPassword, eventUserRequest.getEmail());
+        EventUser eventUser = new EventUser(eventUserRequest.getUsername(), eventUserRequest.getPseudo(), encodedPassword, eventUserRequest.getEmail());
         return eventUserRepository.save(eventUser);
     }
 
