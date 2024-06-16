@@ -1,10 +1,16 @@
 package com.dauphine.event_management_backend.controllers;
 import com.dauphine.event_management_backend.dto.AuthenticationRequest;
 import com.dauphine.event_management_backend.dto.EventUserRequest;
+import com.dauphine.event_management_backend.exceptions.eventusers.*;
 import com.dauphine.event_management_backend.models.EventUser;
 import com.dauphine.event_management_backend.services.EventUserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -16,21 +22,64 @@ public class EventUserController {
         this.eventUserService = eventUserService;
     }
 
+    @GetMapping("/{id}")
+    @Operation(
+            summary = "Retrieve a user by his id",
+            description = "Retrieve a user by path variable 'id'"
+    )
+    public ResponseEntity<EventUser> retrieveUserById(
+            @Parameter(description = "Id of the user to retrieve")
+            @PathVariable UUID id) throws UserNotFoundByIdException {
+        EventUser user = eventUserService.retrieveUserById(id);
+        return ResponseEntity.ok(user);
+    }
+
     @PostMapping
-    public EventUser createUser(@RequestBody EventUserRequest user) {
+    @Operation(
+            summary = "Create a new user",
+            description = "Create a user with the given data (username, pseudo, password, email)"
+    )
+    public ResponseEntity<?> createUser(
+            @Parameter(description = "Request which contains the username, pseudo, password and email for create a new user")
+            @RequestBody EventUserRequest user) throws PseudoAlreadyExistsException, InvalidEmailException, EmptyDataException {
         EventUser registeredUSer = eventUserService.createUser(user);
+        return ResponseEntity.created(URI.create("users/"+registeredUSer.getId())).body(registeredUSer);
+    }
 
-        if (registeredUSer == null) {
-            System.out.println("Registration error");
-            return null;
-        }
+    @PutMapping("/{id}")
+    @Operation(
+            summary = "Update a field of user",
+            description = "Update a user data: username, pseudo, password, email"
+    )
+    public ResponseEntity<EventUser> updateUser(
+            @Parameter(description = "Id of the user to update")
+            @PathVariable UUID id,
+            @Parameter(description = "Request which contains the new data of the user")
+            @RequestBody EventUserRequest eventUserRequest) throws UserNotFoundByIdException, EmptyDataException{
+        EventUser updatedUser = eventUserService.updateUser(id, eventUserRequest);
+        return ResponseEntity.ok(updatedUser);
+    }
 
-        System.out.println("Successful registration");
-        return registeredUSer;
+    @DeleteMapping("/{id}")
+    @Operation(
+            summary = "Delete a user by his id",
+            description = "Delete user by path variable 'id'"
+    )
+    public ResponseEntity<?> deleteUser(
+            @Parameter(description = "Id of the user to delete")
+            @PathVariable UUID id) throws UserNotFoundByIdException {
+        eventUserService.deleteUserById(id);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/login")
-    public ResponseEntity<EventUser> login(@RequestBody AuthenticationRequest authenticationRequest) {
+    @Operation(
+            summary = "Login the user",
+            description = "Authenticate a user by his pseudo and password"
+    )
+    public ResponseEntity<EventUser> login(
+            @Parameter(description = "Pseudo and password to use for authentication")
+            @RequestBody AuthenticationRequest authenticationRequest) throws AuthenticationException {
         EventUser user = eventUserService.authenticateUser(authenticationRequest.getPseudo(), authenticationRequest.getPassword());
         return ResponseEntity.ok(user);
     }

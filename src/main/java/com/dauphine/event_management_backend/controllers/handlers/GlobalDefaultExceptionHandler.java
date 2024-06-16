@@ -1,7 +1,7 @@
-package com.dauphine.event_management_backend.controllers;
+package com.dauphine.event_management_backend.controllers.handlers;
 
-import com.dauphine.event_management_backend.exceptions.categories.CategoryNameAlreadyExistsException;
-import com.dauphine.event_management_backend.exceptions.categories.CategoryNotFoundByIdException;
+import com.dauphine.event_management_backend.exceptions.categories.*;
+import com.dauphine.event_management_backend.exceptions.eventusers.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +14,7 @@ public class GlobalDefaultExceptionHandler {
 
     @ExceptionHandler({
             CategoryNotFoundByIdException.class,
+            UserNotFoundByIdException.class
     })
 
     public ResponseEntity<String> handlerNotFoundException(Exception e){
@@ -22,10 +23,14 @@ public class GlobalDefaultExceptionHandler {
     }
 
     @ExceptionHandler({
-            CategoryNameAlreadyExistsException.class
+            CategoryNameAlreadyExistsException.class,
+            AuthenticationException.class,
+            EmptyDataException.class,
+            PseudoAlreadyExistsException.class,
+            InvalidEmailException.class
     })
 
     public ResponseEntity<String> handleBadRequestException(Exception e){
-        return ResponseEntity.status(401).body(e.getMessage());
+        return ResponseEntity.status(400).body(e.getMessage());
     }
 }

@@ -62,7 +62,7 @@ public class CategoryController {
 
         Category category = categoryService.createCategory(categoryRequest);
         return ResponseEntity
-                .created(URI.create("v1/categories/"+category.getId()))
+                .created(URI.create("categories/"+category.getId()))
                 .body(category);
     }
 
@@ -74,7 +74,7 @@ public class CategoryController {
     public ResponseEntity<Category> updateCategory(
             @Parameter(description = "Id of the category to updated")
             @PathVariable UUID id,
-            @Parameter(description = "Request  which contains the new name of the category")
+            @Parameter(description = "Request which contains the new name of the category")
             @RequestBody CategoryRequest categoryRequest) throws CategoryNotFoundByIdException, CategoryNameAlreadyExistsException {
 
         Category category = categoryService.updateCategory(id,categoryRequest);

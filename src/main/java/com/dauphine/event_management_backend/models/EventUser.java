@@ -75,4 +75,11 @@ public class EventUser {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void setAll(String username, String pseudo, String password, String email) {
+        this.username = username;
+        this.pseudo = pseudo;
+        this.password = password;
+        this.email = email;
+    }
 }
