@@ -62,4 +62,10 @@ public interface EventRepository  extends JpaRepository<Event, UUID> {
     FROM Event event
     WHERE event.createdBy = :createdBy""")
     List<Event> findByCreatedBy(@Param("createdBy") UUID createdBy);
+
+    @Query("""
+    SELECT user.id
+    FROM EventUser user
+    WHERE UPPER(user.pseudo) = UPPER(:pseudo)""")
+    UUID findCreator(@Param("pseudo") String pseudo);
 }

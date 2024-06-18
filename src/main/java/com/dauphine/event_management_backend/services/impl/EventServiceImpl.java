@@ -2,6 +2,7 @@ package com.dauphine.event_management_backend.services.impl;
 
 import com.dauphine.event_management_backend.dto.EventRequest;
 import com.dauphine.event_management_backend.exceptions.events.*;
+import com.dauphine.event_management_backend.exceptions.eventusers.UserNotFoundByIdException;
 import com.dauphine.event_management_backend.models.Event;
 import com.dauphine.event_management_backend.repositories.CategoryRepository;
 import com.dauphine.event_management_backend.repositories.EventRepository;
@@ -59,34 +60,22 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> findByCategoryName(String categoryName){
-        return eventRepository.findByCategoryName(categoryName);
-    }
-
-    @Override
     public List<Event> findByCreatedBy(UUID creator){
         return eventRepository.findByCreatedBy(creator);
     }
 
     @Override
-    public List<Event> findByEventName(String eventName){
-        return eventRepository.findByEventName(eventName);
-
-    }
-
-    @Override
-    public List<Event> findByLocation(String location){
-        return eventRepository.findByLocation(location);
-    }
-
-    @Override
-    public List<Event> findByDescription(String description) {
-        return eventRepository.findByDescription(description);
-    }
-
-    @Override
-    public List<Event> searchEvents(String search) {
-        List<Event> events = new ArrayList<>();
-        return eventRepository.searchEvents(search,search,search,search);
+    public List<Event> filterByString(String search,String filter) throws UserNotFoundByIdException {
+        return switch (filter) {
+            case "category" -> eventRepository.findByCategoryName(search);
+            case "eventName" -> eventRepository.findByEventName(search);
+            case "location" -> eventRepository.findByLocation(search);
+            case "description" -> eventRepository.findByDescription(search);
+            case "creator" -> {
+                UUID creator = eventRepository.findCreator(search);
+                yield findByCreatedBy(creator);
+            }
+            default -> eventRepository.searchEvents(search, search, search, search);
+        };
     }
 }

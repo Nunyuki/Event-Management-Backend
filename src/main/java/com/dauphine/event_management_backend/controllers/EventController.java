@@ -7,6 +7,7 @@ import com.dauphine.event_management_backend.exceptions.categories.CategoryNotFo
 import com.dauphine.event_management_backend.exceptions.events.EmptyDescriptionException;
 import com.dauphine.event_management_backend.exceptions.events.EventAlreadyExistsException;
 import com.dauphine.event_management_backend.exceptions.events.EventNotFoundByIdException;
+import com.dauphine.event_management_backend.exceptions.eventusers.UserNotFoundByIdException;
 import com.dauphine.event_management_backend.models.Category;
 import com.dauphine.event_management_backend.models.Event;
 import com.dauphine.event_management_backend.services.EventService;
@@ -95,75 +96,17 @@ public class EventController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/category/{categoryName}")
+    @GetMapping("/filter/{search}/{filter}")
     @Operation(
-            summary = "Find events by category",
-            description = "Return a event by path variable 'categoryName'"
+            summary = "Filter events by string",
+            description = "Return a event by path variable 'search' and 'filter'"
     )
-    public ResponseEntity<List<Event>> findEventsByCategoryName(
-            @Parameter(description = "category name to search")
-            @PathVariable String categoryName) {
-        List<Event> events = eventService.findByCategoryName(categoryName);
-        return ResponseEntity.ok(events);
-    }
-
-    @GetMapping("/creator/{creator}")
-    @Operation(
-            summary = "Find events by creator",
-            description = "Return a event by path variable 'creator'"
-    )
-    public ResponseEntity<List<Event>> findEventsByCreator(
-            @Parameter(description = "id of the creator to search")
-            @PathVariable UUID creator) {
-        List<Event> events = eventService.findByCreatedBy(creator);
-        return ResponseEntity.ok(events);
-    }
-
-    @GetMapping("/name/{eventName}")
-    @Operation(
-            summary = "Find events by name",
-            description = "Return a event by path variable 'name'"
-    )
-    public ResponseEntity<List<Event>> findEventsByEventByName(
-            @Parameter(description = "name of the event to search")
-            @PathVariable String eventName) {
-        List<Event> events = eventService.findByEventName(eventName);
-        return ResponseEntity.ok(events);
-    }
-
-    @GetMapping("/location/{location}")
-    @Operation(
-            summary = "Find events by location",
-            description = "Return a event by path variable 'location'"
-    )
-    public ResponseEntity<List<Event>> findEventsByLocation(
-            @Parameter(description = "location of the event to search")
-            @PathVariable String location) {
-        List<Event> events = eventService.findByLocation(location);
-        return ResponseEntity.ok(events);
-    }
-
-    @GetMapping("/description/{description}")
-    @Operation(
-            summary = "Find events by description",
-            description = "Return a event by path variable 'description'"
-    )
-    public ResponseEntity<List<Event>> findEventsByDescription(
+    public ResponseEntity<List<Event>> filterEvents(
             @Parameter(description = "description of the event to search")
-            @PathVariable String description) {
-        List<Event> events = eventService.findByDescription(description);
-        return ResponseEntity.ok(events);
-    }
-
-    @GetMapping("/search/{search}")
-    @Operation(
-            summary = "Find events by string",
-            description = "Return a event by path variable 'search'"
-    )
-    public ResponseEntity<List<Event>> searchEvents(
-            @Parameter(description = "search element")
-            @PathVariable String search) {
-        List<Event> events = eventService.searchEvents(search);
+            @PathVariable String search,
+            @Parameter(description = "description of the event to search")
+            @PathVariable String filter) throws UserNotFoundByIdException {
+        List<Event> events = eventService.filterByString(search,filter);
         return ResponseEntity.ok(events);
     }
 }
