@@ -38,7 +38,7 @@ public class CategoryServiceImpl implements CategoryService {
             throw new CategoryNameAlreadyExistsException(categoryName);
         }
 
-        Category category = new Category(categoryName);
+        Category category = new Category(categoryName, categoryRequest.getImagePath());
         return categoryRepository.save(category);
     }
 

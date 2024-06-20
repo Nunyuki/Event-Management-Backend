@@ -22,14 +22,16 @@ public class Category {
 
     public Category() {}
 
-    public Category(String categoryName) {
+    public Category(String categoryName, String imagePath) {
         this.id = UUID.randomUUID();
         this.categoryName = categoryName;
+        this.imagePath = imagePath;
     }
 
-    public Category(UUID id, String categoryName) {
+    public Category(UUID id, String categoryName, String imagePath) {
         this.id = id;
         this.categoryName = categoryName;
+        this.imagePath = imagePath;
     }
 
     public UUID getId() {
