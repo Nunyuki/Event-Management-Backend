@@ -17,6 +17,9 @@ public class Category {
     @Column(name = "category_name", nullable = false)
     private String categoryName;
 
+    @Column(name = "image_path", nullable = true)
+    private String imagePath;
+
     public Category() {}
 
     public Category(String categoryName) {
@@ -43,5 +46,13 @@ public class Category {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
