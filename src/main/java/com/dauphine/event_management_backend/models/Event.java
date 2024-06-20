@@ -3,7 +3,6 @@ package com.dauphine.event_management_backend.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -38,11 +37,11 @@ public class Event {
     private int maxCapacity;
 
     @Column(name = "image", nullable = true)
-    private String image;
+    private byte[] image;
 
     public Event() {}
 
-    public Event(String eventName, UUID createdBy, LocalDateTime createdOn, String categoryName, LocalDateTime eventDate, String eventLocation, String eventDescription, int maxCapacity, String image){
+    public Event(String eventName, UUID createdBy, LocalDateTime createdOn, String categoryName, LocalDateTime eventDate, String eventLocation, String eventDescription, int maxCapacity, byte[] image){
         this.id = UUID.randomUUID();
         this.eventName = eventName;
         this.createdBy = createdBy;
@@ -127,13 +126,21 @@ public class Event {
         this.eventDescription = eventDescription;
     }
 
-    public void setAll(String eventName, String categoryName, LocalDateTime eventDate, String eventLocation, String eventDescription, int maxCapacity, String image){
+    public void setAll(String eventName, String categoryName, LocalDateTime eventDate, String eventLocation, String eventDescription, int maxCapacity, byte[] image){
         this.eventName = eventName;
         this.categoryName = categoryName;
         this.eventDate = eventDate;
         this.eventLocation = eventLocation;
         this.eventDescription = eventDescription;
         this.maxCapacity = maxCapacity;
+        this.image = image;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
         this.image = image;
     }
 }

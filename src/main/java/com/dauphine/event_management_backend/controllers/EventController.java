@@ -109,4 +109,14 @@ public class EventController {
         List<Event> events = eventService.filterByString(search,filter);
         return ResponseEntity.ok(events);
     }
+
+    @GetMapping("/filter/date")
+    @Operation(
+            summary = "Filter events by date",
+            description = "Return a event by date"
+    )
+    public ResponseEntity<List<Event>> filterEventsByDate() {
+        List<Event> events = eventService.filterByDate();
+        return ResponseEntity.ok(events);
+    }
 }

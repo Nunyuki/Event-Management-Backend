@@ -18,4 +18,5 @@ public interface EventService {
     void deleteEventById(UUID id) throws EventNotFoundByIdException;
     List<Event> filterByString(String search,String filter) throws UserNotFoundByIdException;
     List<Event> findByCreatedBy(UUID createdBy);
+    List<Event> filterByDate();
 }

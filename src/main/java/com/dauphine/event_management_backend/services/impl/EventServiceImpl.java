@@ -78,4 +78,9 @@ public class EventServiceImpl implements EventService {
             default -> eventRepository.searchEvents(search, search, search, search);
         };
     }
+
+    @Override
+    public List<Event> filterByDate() {
+        return eventRepository.filterByDate();
+    }
 }

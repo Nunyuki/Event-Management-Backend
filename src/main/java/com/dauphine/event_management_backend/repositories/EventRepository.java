@@ -16,13 +16,13 @@ public interface EventRepository  extends JpaRepository<Event, UUID> {
     SELECT e
     FROM Event e
     WHERE e.createdBy = :createdBy
-        AND UPPER(e.categoryName) = UPPER(:categoryName)
+        AND e.categoryName = :categoryName
         AND e.eventDate = :eventDate
-        AND e.eventLocation = :eventLocation
-        AND e.eventDescription = :eventDescription
+        AND UPPER(e.eventLocation) = UPPER(:eventLocation)
+        AND UPPER(e.eventDescription) = UPPER(:eventDescription)
         AND e.maxCapacity = :maxCapacity
         AND e.image = :image""")
-    List<Event> findEvent(UUID createdBy, LocalDateTime eventDate, String categoryName, String eventLocation, String eventDescription, int maxCapacity, String image);
+    List<Event> findEvent(UUID createdBy, LocalDateTime eventDate, String categoryName, String eventLocation, String eventDescription, int maxCapacity, byte[] image);
 
     @Query("""
     SELECT event
@@ -68,4 +68,10 @@ public interface EventRepository  extends JpaRepository<Event, UUID> {
     FROM EventUser user
     WHERE UPPER(user.pseudo) = UPPER(:pseudo)""")
     UUID findCreator(@Param("pseudo") String pseudo);
+
+    @Query("""
+    SELECT event
+    FROM Event event
+    ORDER BY event.eventDate""")
+    List<Event> filterByDate();
 }

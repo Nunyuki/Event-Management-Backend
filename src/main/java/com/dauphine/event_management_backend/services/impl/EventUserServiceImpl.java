@@ -7,13 +7,15 @@ import com.dauphine.event_management_backend.models.EventUser;
 import com.dauphine.event_management_backend.repositories.EventUserRepository;
 import com.dauphine.event_management_backend.services.EventUserService;
 import org.springframework.stereotype.Service;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.UUID;
 
 @Service
 public class EventUserServiceImpl implements EventUserService {
     private final EventUserRepository eventUserRepository;
+    private static final Logger logger = LoggerFactory.getLogger(EventUserServiceImpl.class);
 
     public EventUserServiceImpl(EventUserRepository eventUserRepository) {
         this.eventUserRepository = eventUserRepository;
@@ -27,7 +29,7 @@ public class EventUserServiceImpl implements EventUserService {
 
     @Override
     public EventUser createUser(EventUserRequest eventUserRequest) throws InvalidEmailException, PseudoAlreadyExistsException,EmptyDataException {
-
+        logger.debug("Trying to create user with pseudo: {}", eventUserRequest.getPseudo());
         if(eventUserRequest.getPseudo().isEmpty() || eventUserRequest.getPassword().isEmpty() || eventUserRequest.getEmail().isEmpty() || eventUserRequest.getUsername().isEmpty()){
             throw new EmptyDataException();
         }

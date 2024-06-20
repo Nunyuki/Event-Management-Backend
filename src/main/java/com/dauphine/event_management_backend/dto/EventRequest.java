@@ -17,7 +17,7 @@ public class EventRequest {
     private String eventLocation;
     private String eventDescription;
     private int maxCapacity;
-    private String image;
+    private byte[] image;
 
 
     public int getMaxCapacity() {
@@ -84,11 +84,11 @@ public class EventRequest {
         this.eventDescription = eventDescription;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 }
