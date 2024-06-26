@@ -4,6 +4,7 @@ import com.dauphine.event_management_backend.dto.EventRequest;
 import com.dauphine.event_management_backend.exceptions.events.*;
 import com.dauphine.event_management_backend.exceptions.eventusers.UserNotFoundByIdException;
 import com.dauphine.event_management_backend.models.Event;
+import com.dauphine.event_management_backend.models.Registration;
 import com.dauphine.event_management_backend.repositories.CategoryRepository;
 import com.dauphine.event_management_backend.repositories.EventRepository;
 import com.dauphine.event_management_backend.services.EventService;
@@ -18,9 +19,11 @@ import java.util.UUID;
 @Service
 public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
+    private final RegistrationServiceImpl registrationService;
 
-    public EventServiceImpl(EventRepository eventRepository) {
+    public EventServiceImpl(EventRepository eventRepository, RegistrationServiceImpl registrationService) {
         this.eventRepository = eventRepository;
+        this.registrationService = registrationService;
     }
 
     @Override
@@ -82,5 +85,15 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<Event> filterByDate() {
         return eventRepository.filterByDate();
+    }
+
+    @Override
+    public List<Event> retrieveUserEvents(UUID eventUseriId) throws EventNotFoundByIdException {
+        List<Registration> registration = registrationService.retrieveAllRegistrationsByUserId(eventUseriId);
+        List<Event> events = new ArrayList<>();
+        for(Registration r: registration){
+            events.add(retrieveEventById(r.getEventId()));
+        }
+        return events;
     }
 }

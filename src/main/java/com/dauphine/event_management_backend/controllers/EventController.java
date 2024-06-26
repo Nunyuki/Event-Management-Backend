@@ -119,4 +119,16 @@ public class EventController {
         List<Event> events = eventService.filterByDate();
         return ResponseEntity.ok(events);
     }
+
+    @GetMapping("/user/{eventUserId}")
+    @Operation(
+            summary = "Retrieve all events where a user is registered",
+            description = "Return a list of events by an user id"
+    )
+    public ResponseEntity<List<Event>> filterEventsByDate(
+        @Parameter(description = "Id of the user")
+        @PathVariable UUID eventUserId) throws EventNotFoundByIdException {
+        List<Event> events = eventService.retrieveUserEvents(eventUserId);
+        return ResponseEntity.ok(events);
+    }
 }
