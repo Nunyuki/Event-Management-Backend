@@ -78,7 +78,7 @@ public class EventServiceImpl implements EventService {
                 UUID creator = eventRepository.findCreator(search);
                 yield findByCreatedBy(creator);
             }
-            default -> eventRepository.searchEvents(search, search, search, search);
+            default -> eventRepository.searchEvents(search, search, search, search, search);
         };
     }
 

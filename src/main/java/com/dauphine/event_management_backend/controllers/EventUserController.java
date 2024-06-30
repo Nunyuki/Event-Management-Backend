@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -20,6 +21,28 @@ public class EventUserController {
 
     public EventUserController(EventUserService eventUserService) {
         this.eventUserService = eventUserService;
+    }
+
+    @Operation(
+            summary = "Retrieve all users",
+            description = "Return all users"
+    )
+    @GetMapping
+    public ResponseEntity<List<EventUser>> retrieveAllUsers() {
+        List<EventUser> users = eventUserService.retrieveAllUsers();
+        return ResponseEntity.ok(users);
+    }
+
+    @Operation(
+            summary = "Retrieve all users by event",
+            description = "Return all users by event"
+    )
+    @GetMapping("events/{eventId}")
+    public ResponseEntity<List<EventUser>> retrieveAllUsersByEventId(
+            @Parameter(description = "Id of the event to retrieve users")
+            @PathVariable UUID eventId) throws UserNotFoundByIdException {
+        List<EventUser> users = eventUserService.retrieveAllUsersByEventId(eventId);
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/{id}")

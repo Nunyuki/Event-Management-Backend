@@ -2,23 +2,26 @@ package com.dauphine.event_management_backend.services.impl;
 
 import com.dauphine.event_management_backend.config.SecurityConfig;
 import com.dauphine.event_management_backend.dto.EventUserRequest;
+import com.dauphine.event_management_backend.exceptions.events.EventNotFoundByIdException;
 import com.dauphine.event_management_backend.exceptions.eventusers.*;
 import com.dauphine.event_management_backend.models.EventUser;
+import com.dauphine.event_management_backend.models.Registration;
 import com.dauphine.event_management_backend.repositories.EventUserRepository;
 import com.dauphine.event_management_backend.services.EventUserService;
 import org.springframework.stereotype.Service;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Service
 public class EventUserServiceImpl implements EventUserService {
     private final EventUserRepository eventUserRepository;
-    private static final Logger logger = LoggerFactory.getLogger(EventUserServiceImpl.class);
+    private final RegistrationServiceImpl registrationService;
 
-    public EventUserServiceImpl(EventUserRepository eventUserRepository) {
+    public EventUserServiceImpl(EventUserRepository eventUserRepository, RegistrationServiceImpl registrationService) {
         this.eventUserRepository = eventUserRepository;
+        this.registrationService = registrationService;
     }
 
     @Override
@@ -29,7 +32,6 @@ public class EventUserServiceImpl implements EventUserService {
 
     @Override
     public EventUser createUser(EventUserRequest eventUserRequest) throws InvalidEmailException, PseudoAlreadyExistsException,EmptyDataException {
-        logger.debug("Trying to create user with pseudo: {}", eventUserRequest.getPseudo());
         if(eventUserRequest.getPseudo().isEmpty() || eventUserRequest.getPassword().isEmpty() || eventUserRequest.getEmail().isEmpty() || eventUserRequest.getUsername().isEmpty()){
             throw new EmptyDataException();
         }
@@ -74,5 +76,20 @@ public class EventUserServiceImpl implements EventUserService {
             throw new AuthenticationException();
         }
         return eventUser;
+    }
+
+    @Override
+    public List<EventUser> retrieveAllUsers(){
+        return eventUserRepository.findAll();
+    }
+
+    @Override
+    public List<EventUser> retrieveAllUsersByEventId(UUID eventId) throws UserNotFoundByIdException {
+        List<Registration> registrations = registrationService.retrieveAllRegistrationsByEventId(eventId);
+        List<EventUser> eventUsers = new ArrayList<>();
+        for(Registration registration: registrations){
+            eventUsers.add(retrieveUserById(registration.getEventUserId()));
+        }
+        return eventUsers;
     }
 }

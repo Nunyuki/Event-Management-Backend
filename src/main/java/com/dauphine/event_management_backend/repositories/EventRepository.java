@@ -50,12 +50,13 @@ public interface EventRepository  extends JpaRepository<Event, UUID> {
 
     @Query("""
     SELECT event
-    FROM Event event
+    FROM Event event, EventUser eventUser
     Where UPPER(event.categoryName) LIKE UPPER(CONCAT('%',:categoryName,'%'))
         OR UPPER(event.eventName) LIKE UPPER(CONCAT('%',:eventName,'%'))
         OR UPPER(event.eventLocation) LIKE UPPER(CONCAT('%',:eventLocation,'%'))
-        OR UPPER(event.eventDescription) LIKE UPPER(CONCAT('%',:eventDescription,'%'))""")
-    List<Event> searchEvents(@Param("categoryName") String categoryName, @Param("eventName") String eventName, @Param("eventLocation") String eventLocation, @Param("eventDescription") String eventDescription);
+        OR UPPER(event.eventDescription) LIKE UPPER(CONCAT('%',:eventDescription,'%'))
+        OR (UPPER(eventUser.pseudo) LIKE UPPER(CONCAT('%',:pseudo,'%')) AND eventUser.id = event.createdBy)""")
+    List<Event> searchEvents(@Param("categoryName") String categoryName, @Param("eventName") String eventName, @Param("eventLocation") String eventLocation, @Param("eventDescription") String eventDescription, @Param("pseudo") String pseudo);
 
     @Query("""
     SELECT event
